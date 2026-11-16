@@ -1,0 +1,40 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "crux",
+      "camelcase": "Crux",
+      "title": "Crux",
+      "scope": "source.crux",
+      "file-types": [
+        "cx"
+      ],
+      "injection-regex": "^crux$",
+      "class-name": "TreeSitterCrux"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Crux grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Floris van Onna",
+        "url": "https://github.com/Floris0106"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/Floris0106/tree-sitter-crux"
+    }
+  },
+  "bindings": {
+    "c": false,
+    "go": false,
+    "java": false,
+    "node": false,
+    "python": false,
+    "rust": true,
+    "swift": false,
+    "zig": false
+  }
+}
