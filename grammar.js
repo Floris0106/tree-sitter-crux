@@ -38,12 +38,19 @@ export default grammar({
     ),
     declaration: $ => choice(
       $.namespace_declaration,
+      $.using_declaration,
     ),
 
     namespace_declaration: $ => seq(
       "namespace",
       field("name", $._name),
       $.declaration_list
+    ),
+
+    using_declaration: $ => seq(
+      "using",
+      field("name", $._name),
+      ";"
     ),
 
     _name: $ => choice(
