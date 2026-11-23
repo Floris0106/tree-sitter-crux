@@ -4,10 +4,72 @@
     "named": true,
     "subtypes": [
       {
+        "type": "function_declaration",
+        "named": true
+      },
+      {
         "type": "namespace_declaration",
+        "named": true
+      },
+      {
+        "type": "using_declaration",
         "named": true
       }
     ]
+  },
+  {
+    "type": "expression",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "block_expression",
+        "named": true
+      },
+      {
+        "type": "lambda_expression",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "pattern",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "tuple_pattern",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "block_expression",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "using_declaration",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "declaration_list",
@@ -22,6 +84,68 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "function_declaration",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tuple_pattern",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "lambda_expression",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tuple_pattern",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -132,6 +256,57 @@
     }
   },
   {
+    "type": "tuple_pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "pattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "using_declaration",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "qualified_name",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "->",
+    "named": false
+  },
+  {
     "type": "::",
     "named": false
   },
@@ -140,11 +315,19 @@
     "named": false
   },
   {
+    "type": "func",
+    "named": false
+  },
+  {
     "type": "identifier",
     "named": true
   },
   {
     "type": "namespace",
+    "named": false
+  },
+  {
+    "type": "using",
     "named": false
   },
   {

@@ -16,6 +16,8 @@ export default grammar({
 
   supertypes: $ => [
     $.declaration,
+    $.expression,
+    $.pattern,
   ],
 
   word: $ => $.identifier,
@@ -39,6 +41,7 @@ export default grammar({
     declaration: $ => choice(
       $.namespace_declaration,
       $.using_declaration,
+      $.function_declaration,
     ),
 
     namespace_declaration: $ => seq(
@@ -51,6 +54,53 @@ export default grammar({
       "using",
       field("name", $._name),
       ";"
+    ),
+
+    function_declaration: $ => seq(
+      "func",
+      field("name", $.identifier),
+      field("arguments", $.tuple_pattern),
+      $._function_body
+    ),
+    _function_body: $ => choice(
+      field("body", $.block_expression),
+      seq($._lambda_body, ";"),
+      ";"
+    ),
+
+    expression: $ => choice(
+      $.block_expression,
+      $.lambda_expression,
+    ),
+
+    block_expression: $ => seq(
+      "{",
+      repeat($._statement),
+      optional(field("value", $.expression)),
+      "}"
+    ),
+    _statement: $ => choice(
+      seq($.expression, ";"),
+      $.using_declaration
+    ),
+    
+    lambda_expression: $ => seq(
+      field("arguments", $.tuple_pattern),
+      $._lambda_body
+    ),
+    _lambda_body: $ => seq(
+      "->",
+      field("body", $.expression)
+    ),
+
+    pattern: $ => choice(
+      $.tuple_pattern,
+    ),
+
+    tuple_pattern: $ => seq(
+      "(",
+      sepBy($.pattern, ","),
+      ")"
     ),
 
     _name: $ => choice(
